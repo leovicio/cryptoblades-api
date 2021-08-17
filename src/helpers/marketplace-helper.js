@@ -11,13 +11,13 @@ const KEEP_ALIVE_CHECK_INTERVAL = parseInt(process.env.WEBSOCKET_PROVIDER_KEEP_A
 
 const helpers = {
   getMarketplaceAddress: () => process.env.ADDRESS_MARKET || '0x90099dA42806b21128A094C713347C7885aF79e2',
-  getCharactersAddress: () => process.env.ADDRESS_CHARACTER || '0xc6f252c2CdD4087e30608A35c022ce490B58179b',
+  getCharactersAddress: () => process.env.ADDRESS_CHARACTER || '0x15513c3e42c8f3424354eb57310be92c3c94ab39',
   getWeaponsAddress: () => process.env.ADDRESS_WEAPON || '0x7E091b0a220356B157131c831258A9C98aC8031A',
   getShieldsAddress: () => process.env.ADDRESS_SHIELD || '0xf9E9F6019631bBE7db1B71Ec4262778eb6C3c520',
 
   marketplaceAbiPath: './src/data/abi/NFTMarket.json',
-  charactersAbiPath: './src/data/abi/Weapons.json',
-  weaponsAbiPath: './src/data/abi/Characters.json',
+  charactersAbiPath: './src/data/abi/Characters.json',
+  weaponsAbiPath: './src/data/abi/Weapons.json',
   shieldsAbiPath: './src/data/abi/Shields.json',
 
   nftMarketPlace: null,
@@ -144,7 +144,7 @@ const helpers = {
       helpers.characters = helpers.characters.connect(helpers.getProvider());
       helpers.providerEmitter.emit('reconnected:characters');
     });
-
+	
     return helpers.characters;
   },
 
@@ -212,9 +212,10 @@ const helpers = {
     const timestamp = Date.now();
 
     if (helpers.isCharacter(nftAddress)) {
+	  
       const character = await helpers.getCharacters().get(nftId);
       const charLevel = parseInt(character[1], 10);
-      const charElement = helpers.traitNumberToName(+character[2]);
+      const charElement = helpers.traitNumberToName(character[2]);
 
       const ret = {
         charId: nftId, charLevel, charElement, price, timestamp, sellerAddress, network: 'bsc',
