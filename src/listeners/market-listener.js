@@ -20,6 +20,7 @@ const listen = async () => {
     const collection = marketplaceHelper.getCollection(nftAddress);
     const data = await marketplaceHelper.getNFTData(nftAddress, nftId, price, seller);
     const idKey = marketplaceHelper.getIdKey(nftAddress);
+	console.log('idkey',idKey);
 
     if (!collection || !idKey) return;
 
@@ -50,6 +51,7 @@ const listen = async () => {
   };
 
   const onNewListing = async (seller, nftAddress, nftId, price) => {
+	  console.log('Added',nftAddress);
     await createOrUpdate(nftAddress, nftId.toString(), price, seller);
     console.log('[MARKET]', `Add ${marketplaceHelper.getTypeName(nftAddress)} ${nftId} from ${seller} for ${marketplaceHelper.realPrice(price)}`);
   };
