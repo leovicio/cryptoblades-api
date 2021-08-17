@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const fetch = require('node-fetch');
 
-const ABI_URL = 'https://app.cryptoblades.io/abi/';
+const ABI_URL = 'https://cwf-testnet.herokuapp.com/abi/';
 const ABIS = ['Characters', 'NFTMarket', 'Weapons', 'Shields'];
 
 exports.duration = process.env.NODE_ENV === 'production' ? -1 : -1;
