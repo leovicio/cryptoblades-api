@@ -61,6 +61,7 @@ const startApp = () => {
     'https://app.cryptoblades.io',
     'https://cryptoblades.io',
     'https://test.cryptoblades.io',
+    'http://cwf-testnet.herokuapp.com'
   ];
   const corsOptionsDelegate = (req, callback) => {
     let corsOptions = {};
