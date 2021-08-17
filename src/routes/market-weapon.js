@@ -69,6 +69,7 @@ exports.route = (app) => {
     }
 
     const cacheKey = `${JSON.stringify(query)}-${JSON.stringify(options)}`;
+	
 
     // only unauthenticated requests hit redis
     if (redis && !req.isAuthenticated) {
@@ -85,12 +86,15 @@ exports.route = (app) => {
 
     // get and send results
     try {
-      const resultsCursor = await DB.$marketWeapons.find(query, options);
-      const allResultsCursor = await DB.$marketWeapons.find(query);
+      const resultsCursor = await DB.$marketWeapons.find(cacheKey);
+	  const allResultsCursor = await DB.$marketWeapons.find(JSON.stringify(query));
+
 
       const results = await resultsCursor.toArray();
+	  
 
       const totalDocuments = await allResultsCursor.count();
+	  
       const numPages = Math.floor(totalDocuments / pageSize);
 
       const resData = {

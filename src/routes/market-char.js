@@ -85,8 +85,8 @@ exports.route = (app) => {
 
     // get and send results
     try {
-      const resultsCursor = await DB.$marketCharacters.find(query, options);
-      const allResultsCursor = await DB.$marketCharacters.find(query);
+      const resultsCursor = await DB.$marketCharacters.find(cacheKey);
+      const allResultsCursor = await DB.$marketCharacters.find(JSON.stringify(query));
 
       const results = await resultsCursor.toArray();
 
