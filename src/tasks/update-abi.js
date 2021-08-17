@@ -1,4 +1,4 @@
-const fs = require('fs-extra');
+/*const fs = require('fs-extra');
 const fetch = require('node-fetch');
 
 const ABI_URL = 'https://cwf-testnet.herokuapp.com/abi';
@@ -14,4 +14,4 @@ exports.task = async () => {
 
     await fs.writeJson(`./src/data/abi/${name}.json`, abi);
   }));
-};
+};*/
