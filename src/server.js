@@ -58,9 +58,6 @@ const startApp = () => {
   app.use(notmatches('/static', secretCheck));
 
   const allowList = [
-    'https://app.cryptoblades.io',
-    'https://cryptoblades.io',
-    'https://test.cryptoblades.io',
     'http://cwf-testnet.herokuapp.com'
   ];
   const corsOptionsDelegate = (req, callback) => {
@@ -118,5 +115,5 @@ DB.isReady.then(async () => {
   startApp();
   startTasks();
   startListeners();
-  startLogging();
+  //startLogging();
 });
