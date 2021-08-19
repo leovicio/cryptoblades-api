@@ -67,8 +67,10 @@ exports.route = (app) => {
     if (sortBy && sortDir) {
       options.sort = { [sortBy]: sortDir };
     }
-
+	
     const cacheKey = `${JSON.stringify(query)}-${JSON.stringify(options)}`;
+	
+	console.log(cacheKey);
 
     // only unauthenticated requests hit redis
     if (redis && !req.isAuthenticated) {
@@ -85,8 +87,8 @@ exports.route = (app) => {
 
     // get and send results
     try {
-      const resultsCursor = await DB.$marketCharacters.find(cacheKey);
-      const allResultsCursor = await DB.$marketCharacters.find(JSON.stringify(query));
+      const resultsCursor = await DB.$marketWeapons.find(query,options);
+	  const allResultsCursor = await DB.$marketWeapons.find(query);
 
       const results = await resultsCursor.toArray();
 
